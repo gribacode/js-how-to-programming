@@ -400,3 +400,92 @@ const booksPrice = books.reduce((acc, { price }) => {
 ```
 
 Unlike `map` or `filter` -> `reduce` can return any data structure
+
+---
+
+## Collection search
+
+`find` method return the value of the first element found in the array. Otherwise, _undefined_ or _-1_ is returned
+
+Method `findIndex` return the index of the first element
+
+How can find element or index of array in js:
+
+```js
+const arrayOfCities = ["London", "Paris", "Madrid", "Lisboa"];
+
+arrayOfCities.includes("Paris"); // true
+arrayOfCities.includes("Rostov-on-Don"); // false
+
+arrayOfCities.indexOf("Madrid"); // 2
+arrayOfCities.indexOf("Rostov-on-Don"); // -1
+```
+
+How can find element or index of array in js with `find` and `findIndex` methods:
+
+```js
+const developers = [
+  {
+    id: 1,
+    fullName: "Mike Dowson",
+    techStack: ["Javascript", "Vue Js"],
+    side: "Frontend",
+  },
+  {
+    id: 2,
+    fullName: "Chris Drake",
+    techStack: ["React Js", "Redux Toolkit"],
+    side: "Frontend",
+  },
+  {
+    id: 3,
+    fullName: "Adam Smith",
+    techStack: ["Node Js", "Typescript", "Express Js"],
+    side: "Backend",
+  },
+  {
+    id: 4,
+    fullName: "Sam Rickey",
+    techStack: ["Html", "Css", "Angular Js"],
+    side: "Frontend",
+  },
+];
+
+const frontendDevelopers = developers.find(
+  (developer) => developer.side === "Frontend"
+);
+
+/*
+frontendDevelopers = {
+  id: 1,
+  fullName: "Mike Dowson",
+  techStack: ["Javascript", "Vue Js"],
+  side: "Frontend",
+};
+*/
+
+const nodeJsTechStack = developers.find(({ techStack }) =>
+  techStack.includes("Node Js")
+);
+
+/*
+nodeJsTechStack = {
+  id: 3,
+  fullName: "Adam Smith",
+  techStack: ["Node Js", "Typescript", "Express Js"],
+  side: "Backend",
+};
+*/
+
+const developerIndex = developers.find(
+  (developer) => (developer.fullName = "Sam Rickey")
+);
+
+// developerIndex = 3
+
+const techStackIndex = developers.find(({ techStack }) =>
+  techStack.includes("Redux Toolkit")
+);
+
+// techStackIndex = 1
+```
