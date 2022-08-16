@@ -338,3 +338,65 @@ usersWithJsTechStack = [
 ];
 */
 ```
+
+---
+
+## Reduce
+
+Method `reduce` applies function reducer to each array element (left -> right) and returns one result value
+
+Syntax:
+
+```js
+[0, 1, 2, 3, 4].reduce(function (previousValue, currentValue, index, array) {
+  return previousValue + currentValue;
+});
+```
+
+![reduce](./assets/reduce.png)
+
+Code example:
+
+```js
+const books = [
+  {
+    id: 12,
+    title: "Travel",
+    price: 1200,
+  },
+  {
+    id: 16,
+    title: "Red cars",
+    price: 600,
+  },
+  {
+    id: 20,
+    title: "Hot laptop",
+    price: 800,
+  },
+  {
+    id: 24,
+    title: "Rock and life",
+    price: 2400,
+  },
+];
+
+const summaryPrice = books.reduce((acc, book) => acc + book.price, 0);
+
+// summaryPrice = 5000
+
+const summaryMinPrice = books.reduce(
+  (acc, { price }) => (price <= 800 ? acc + price : acc),
+  0
+);
+
+// summaryMinPrice = 1400
+
+const booksPrice = books.reduce((acc, { price }) => {
+  return [...acc, price];
+}, []);
+
+// booksPrice = [1200, 600, 800, 2400]
+```
+
+Unlike `map` or `filter` -> `reduce` can return any data structure
