@@ -18,7 +18,7 @@ queueArray.shift();
 // queueArray = [8]
 ```
 
-**Stacks** are linear data structures, they follow Last In Firs Out pattern. In short: LIFO - last in, first out
+**Stacks** are linear data structures, they follow Last In First Out pattern. In short: LIFO - last in, first out
 
 ![lifo](./assets/lifo.png)
 
@@ -181,4 +181,160 @@ function deepCopy(objForDeepCopy) {
 
   return clonedObject;
 }
+```
+
+---
+
+## Mapping arrays and collections
+
+There are two options to map an array or a collection: `map()` and `forEach()`
+
+The main difference between `map` and `forEach` is that the `map` method returns a new array by applying the callback function on each element of an array, while the `forEach` method doesn’t return anything
+
+You can use the `forEach` method to mutate the source array, but this isn't really the way it's meant to be used. Instead, it's great for when you need to do some action with each element of the array
+
+On the other hand, the `map` method is used for creating a new array, and thus, it’s chainable. You can call a number of map operations one after the other
+
+The `forEach` method doesn’t return anything, so you can’t chain it with any other methods — it’s not chainable
+
+If you’re planning to alter the array elements by applying a function, you should use the `map` method, since it doesn’t modify the original array and returns a new array. On the other hand, if you want to loop through all the elements of an array and don’t need a returned array,  use the `forEach` method
+
+Syntax `map`
+
+```js
+const arrayOfNumbers = [4, 12, 8, 2];
+
+const mapResult = arrayOfNumbers.map((item, key, arr) =>
+  console.log(item, key, arr)
+);
+```
+
+Syntax `forEach`
+
+```js
+const arrayOfNumbers = [4, 12, 8, 2];
+
+const forEachResult = arrayOfNumbers.forEach((item, key, arr) =>
+  console.log(item, key, arr)
+);
+```
+
+---
+
+## Filter
+
+The `filter()` method creates a shallow copy of a portion of a given array, filtered down to just the elements from the given array that pass the test implemented by the provided function
+
+Note:
+
+Array with primitive data types (`number`, `string`, `boolean`, `symbol`, `BigInt`, `undefined`, `null`, `NaN`, `infinity`, `-infinity`) called an _array_
+
+Array with objects called a _collection_
+
+To filter an array or collection use method `filter`:
+
+```js
+const arrayOfNumbers = [12, 16, 24, 31, 4, 2, 3];
+
+const oddNumbers = arrayOfNumbers.filter((number) => number % 2 !== 0);
+
+// oddNumbers = [13, 1]
+
+const users = [
+  {
+    id: 1,
+    name: "Vlad",
+    techStack: ["js", "python"],
+    isActive: true,
+  },
+  {
+    id: 2,
+    name: "Sasha",
+    techStack: ["c#", "java"],
+    isActive: false,
+  },
+  {
+    id: 3,
+    name: "Anna",
+    techStack: ["vuejs", "reactjs"],
+    isActive: true,
+  },
+  {
+    id: 4,
+    name: "Tom",
+    techStack: ["docker", "golang"],
+    isActive: true,
+  },
+];
+
+const isActiveUsers = users.filter((user) => user.isActive);
+
+/*
+isActiveUsers = [                                             
+  {                                           
+    id: 1,                                    
+    name: 'Vlad',                             
+    techStack: [ 'js', 'python' ],            
+    isActive: true                            
+  },                                          
+  {                                           
+    id: 3,                                    
+    name: 'Anna',                             
+    techStack: [ 'vuejs', 'reactjs' ],        
+    isActive: true                            
+  },                                          
+  {                                           
+    id: 4,                                    
+    name: 'Tom',                              
+    techStack: [ 'docker', 'golang' ],        
+    isActive: true                            
+  }                                           
+]                                             
+*/
+```
+
+Often with `filter` use `includes`, for the to check nested in _collection_ data structures for the presence of a particular element. As a result all objects in which there are matches wil be returned:
+
+```js
+const users = [
+  {
+    id: 1,
+    name: "Vlad",
+    techStack: ["js", "python"],
+    isActive: true,
+  },
+  {
+    id: 2,
+    name: "Sasha",
+    techStack: ["c#", "java"],
+    isActive: false,
+  },
+  {
+    id: 3,
+    name: "Anna",
+    techStack: ["vuejs", "reactjs"],
+    isActive: true,
+  },
+  {
+    id: 4,
+    name: "Tom",
+    techStack: ["docker", "golang"],
+    isActive: true,
+  },
+];
+
+const usersWithJsTechStack = users.filter((user) =>
+  user.techStack.includes("js")
+);
+
+/*
+usersWithJsTechStack = [
+  {
+    id: 1,
+    name: "Vlad",
+    techStack: ["js", "python"],
+    isActive: true,
+  },
+];
+*/
 ```
