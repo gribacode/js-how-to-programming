@@ -335,7 +335,7 @@ usersWithJsTechStack = [
     techStack: ["js", "python"],
     isActive: true,
   },
-];
+]
 */
 ```
 
@@ -461,7 +461,7 @@ frontendDevelopers = {
   fullName: "Mike Dowson",
   techStack: ["Javascript", "Vue Js"],
   side: "Frontend",
-};
+}
 */
 
 const nodeJsTechStack = developers.find(({ techStack }) =>
@@ -474,7 +474,7 @@ nodeJsTechStack = {
   fullName: "Adam Smith",
   techStack: ["Node Js", "Typescript", "Express Js"],
   side: "Backend",
-};
+}
 */
 
 const developerIndex = developers.find(
@@ -488,4 +488,117 @@ const techStackIndex = developers.find(({ techStack }) =>
 );
 
 // techStackIndex = 1
+```
+
+---
+
+## Array sorting
+
+`sort` method sort the elements of an array and returns the sorted array. It sorts all elements, regardless of their type, as a string
+
+The `sort` method mutates the original array
+
+Code example with _string_:
+
+```js
+const arrayOfCities = [
+  "London",
+  "Paris",
+  "Madrid",
+  "Lisboa",
+  "Amsterdam",
+  "Bangkok",
+];
+
+const sortedArray = arrayOfCities.sort();
+
+// sortedArray = ["Amsterdam", "Bangkok", "Lisboa", "London", "Madrid", "Paris"]
+```
+
+Code example with _numbers_:
+
+```js
+const arrayOfNumbers = [12, 4, 2, 6, 24, 8];
+
+const sortedArray = arrayOfNumbers.sort(
+  (firstNumber, secondNumber) => firstNumber - secondNumber
+);
+
+// sortedArray = [2, 4, 6, 8, 12, 24]
+```
+
+Sort in reverse order:
+
+```js
+const arrayOfNumbers = [12, 4, 2, 6, 24, 8];
+
+const sortedArray = arrayOfNumbers.sort(
+  (firstNumber, secondNumber) => secondNumber - firstNumber
+);
+
+// or
+
+const sortedArray = arrayOfNumbers.reverse();
+
+// sortedArray = [24, 12, 8, 6, 4, 2]
+```
+
+_Collection_ sorting:
+
+```js
+const children = [
+  {
+    name: "Jack",
+    age: 12,
+  },
+  {
+    name: "Fil",
+    age: 10,
+  },
+  {
+    name: "Mike",
+    age: 8,
+  },
+  {
+    name: "Lip",
+    age: 6,
+  },
+];
+
+function sortString(firstString, secondString) {
+  if (firstString > secondString) {
+    return 1;
+  }
+  if (firstString < secondString) {
+    return -1;
+  }
+  return 0;
+}
+
+const sortedCollectionByName = children.sort((firstChild, secondChild) =>
+  sortString(firstChild.name, secondChild.name)
+);
+
+/*
+sortedCollectionByName = [                                 
+  { name: 'Fil', age: 10 },       
+  { name: 'Jack', age: 12 },      
+  { name: 'Lip', age: 6 },       
+  { name: 'Mike', age: 8 }        
+]                          
+*/
+
+const sortedCollectionByAge = children.sort(
+  (firstChild, secondChild) =>
+    parseInt(firstChild.age) - parseInt(secondChild.age)
+);
+
+/*
+sortedCollectionByAge = [
+  { name: 'Lip', age: 6 },
+  { name: 'Mike', age: 8 },
+  { name: 'Fil', age: 10 },
+  { name: 'Jack', age: 12 }
+]
+*/
 ```
